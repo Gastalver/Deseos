@@ -18,4 +18,9 @@ export class ListaDeseosService {
     this.listas.push(lista3);
 
   }
+
+  getListas(){
+    return this.listas
+  }
+
 }
