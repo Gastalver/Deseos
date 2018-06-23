@@ -4,11 +4,11 @@ import {List} from "ionic-angular";
 import { NavController } from "ionic-angular"; // Equivalente al Router
 
 /* Modelos */
-import { Lista} from "../../app/clases/listas";
-import { ListaItem} from "../../app/clases/lista-item";
+import { Lista, ListaItem} from "../../app/clases";
 
 /* Componentes */
-import {AgregarComponent} from "../agregar/agregar.component";
+import { AgregarComponent } from "../agregar/agregar.component";
+import { DetalleComponent } from "../detalle/detalle.component";
 
 @Component({
   selector: 'app-pendientes',
@@ -21,14 +21,18 @@ export class PendientesComponent implements OnInit {
     private _listaDeseos: ListaDeseosService,
     private _navController: NavController
   ) {
-    this.listas = this._listaDeseos.getListas();
   }
 
   ngOnInit() {
+    this.listas = this._listaDeseos.getListas();
     console.log('Componente pendientes cargado');
     console.log(this.listas)
   }
   irAgregar(){
     this._navController.push(AgregarComponent)
+  }
+
+  verDetalle(lista,index){
+    this._navController.push(DetalleComponent, { lista, index });
   }
 }
